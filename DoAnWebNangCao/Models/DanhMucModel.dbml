@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MobileShopDB" Class="DanhMucModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.ProductCatalogues" Member="ProductCatalogues">
+    <Type Name="ProductCatalogue">
+      <Column Name="CatalogueID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CatalogueName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
