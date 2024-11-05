@@ -19,14 +19,14 @@ namespace DoAnWebNangCao.Controllers
         [HttpPost]
         public JsonResult GetListDanhMuc(int pageNumber, int pageSize)
         {
-            Debug.WriteLine("Da den day");
+            Debug.WriteLine(pageNumber);
             var listDanhMuc = _danhMucContext.ProductCatalogues
                              .OrderBy(sp => sp.CatalogueID)
                              .Skip((pageNumber - 1) * pageSize)
                              .Take(pageSize)
                              .ToList();
             if (listDanhMuc == null)
-            {
+            {   
                 Debug.WriteLine("loi");
             }
             var tongSoDanhMuc = _danhMucContext.ProductCatalogues.Count();

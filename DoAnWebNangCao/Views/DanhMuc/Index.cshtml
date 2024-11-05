@@ -25,14 +25,12 @@
 </nav>
 
 @*HỘP THOẠI BẬT LÊN KHI ẤN NÚT THÊM*@
-<div class="modal fade" id="addCatalogueModal" tabindex="-1" role="dialog" aria-labelledby="addCatalogueModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="addCatalogueModal" tabindex="-1" aria-labelledby="addCatalogueModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addCatalogueModalLabel">Thêm Danh Mục Sản Phẩm</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h1 class="modal-title fs-5" id="addCatalogueModalLabel">Thêm Danh Mục Sản Phẩm</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="addCatalogueForm">
@@ -44,7 +42,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" id="saveCatalogueBtn">Hoàn Thành</button>
+                <button type="button" class="btn btn-primary" id="saveCatalogueBtn" data-bs-dismiss="modal">Hoàn Thành</button>
             </div>
         </div>
     </div>
@@ -71,7 +69,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary" id="saveEditCatalogueBtn">Hoàn Thành</button>
+                <button type="button" class="btn btn-primary" id="saveEditCatalogueBtn" data-bs-dismiss="modal">Hoàn Thành</button>
             </div>
         </div>
         </div>
@@ -81,17 +79,21 @@
     $(document).ready(function () {
         var pageNumber = 1;
         var pageSize = 10;
+        var tongSoTrang = 1;
 
         function loadData() {
+            console.log(pageNumber + " " + tongSoTrang);
             $.ajax({
                 url: '@Url.Action("GetListDanhMuc", "DanhMuc")',
                 type: 'POST',
                 data: { pageNumber: pageNumber, pageSize: pageSize },
                 dataType: 'json',
                 success: function (data) {
+                    if (data.listDanhMuc.length === 0) {
+                        location.reload();
+                    }
                     var tableBody = $('#catalogueTable tbody');
                     tableBody.empty();
-
                     $.each(data.listDanhMuc, function (index, value) {
                         var row = '<tr data-id="' + value.CatalogueID + '">' +
                             '<td>' + value.CatalogueID + '</td>' +
@@ -102,7 +104,7 @@
                         tableBody.append(row);
                     });
 
-                    var tongSoTrang = Math.ceil(data.tongSoDanhMuc / pageSize);
+                    tongSoTrang = Math.ceil(data.tongSoDanhMuc / pageSize);
                     $('#currentPage .page-link').text(pageNumber);
                     $('#lastPage .page-link').text(tongSoTrang);
 
@@ -160,8 +162,9 @@
                 success: function (response) {
                     if (response.success == true) {
                         alert(response.message);
-                        $('#addCatalogueModal').modal('hide'); // Đóng modal
-                        $('.modal-backdrop').remove();
+                        //$('#addCatalogueModal').modal('hide'); // Đóng modal
+                        //$('.modal-backdrop').remove();
+                        //$('#addCatalogueModal').modal('toggle');
                         loadData(); // Cập nhật lại danh sách
                     } else {
                         alert(response.message);
@@ -201,8 +204,8 @@
                 data: { id: id,ten: name },
                 success: function (response) {
                     alert(response.message);
-                    $('#editCatalogueModal').modal('hide');
-                    $('.modal-backdrop').remove();
+                    //$('#editCatalogueModal').modal('hide');
+                    //$('.modal-backdrop').remove();
                     loadData();
                 },
                 error: function (errormessage) {
