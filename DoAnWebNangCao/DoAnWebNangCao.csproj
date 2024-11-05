@@ -133,6 +133,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DanhMucModel.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\SanPhamModel.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SanPhamModel.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +174,14 @@
     <None Include="Models\DanhMucModel.dbml.layout">
       <DependentUpon>DanhMucModel.dbml</DependentUpon>
     </None>
+    <Content Include="Models\SanPhamModel.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SanPhamModel.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Models\SanPhamModel.dbml.layout">
+      <DependentUpon>SanPhamModel.dbml</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
