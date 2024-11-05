@@ -1,5 +1,11 @@
 ﻿<h2>Danh Sách Danh Mục</h2>
 
+<div style="margin-bottom:10px">
+    @Html.TextBox("SearchDanhMuc", "", new { placeholder = "Nhập tên sản phẩm" })
+    <input type="submit" id="searchBtn" value="Tìm">
+    <br />
+</div>
+
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCatalogueModal">Thêm</button>
 
 <table id="catalogueTable" class="table">
@@ -235,6 +241,39 @@
                     }
                 });
             }
+        });
+
+        $('#searchBtn').click(function () {
+            event.preventDefault();
+            var searchVal = $('#SearchDanhMuc').val();
+            $.ajax({
+                url: '@Url.Action("TimKiemDanhMuc", "DanhMuc")',
+                type: 'GET',
+                dataType: 'json',
+                data: { name: searchVal },
+                success: function (data) {
+                    //console.log(data);
+                    if (data.length == 0) {
+                        alert("Khong co ban ghi");
+                        loadData();
+                    } else {
+                        var tableBody = $('#catalogueTable tbody');
+                        tableBody.empty(); // Xóa nội dung cũ
+                        $.each(data, function (index, value) {
+                            var row = '<tr data-id="' + value.CatalogueID + '">' +
+                                '<td>' + value.CatalogueID + '</td>' +
+                                '<td>' + value.CatalogueName + '</td>' +
+                                '<td>' + '<button id="editBtn" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#editCatalogueModal">Edit</button>' + " " +
+                                '<button id="delBtn" class="btn btn-danger">Delete</button>' + '</td>' +
+                                '</tr>';
+                            tableBody.append(row);
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.log("Đã xảy ra lỗi", error);
+                }
+            });
         });
     });
 </script>

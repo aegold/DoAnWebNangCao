@@ -91,5 +91,21 @@ namespace DoAnWebNangCao.Controllers
 
             return Json(new { success = true, message = "Danh mục đã được xóa thành công." });
         }
+
+        public JsonResult TimKiemDanhMuc(string name)
+        {
+            {
+                var productList = _danhMucContext.ProductCatalogues
+               .Where(x => x.CatalogueName.Contains(name)) // Tìm kiếm theo tên sản phẩm
+               .Select(x => new
+               {
+                   x.CatalogueID,
+                   x.CatalogueName
+               })
+               .ToList();
+                //Debug.WriteLine(productList);
+                return Json(productList, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
