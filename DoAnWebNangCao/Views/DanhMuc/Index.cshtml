@@ -11,7 +11,7 @@
 <table id="catalogueTable" class="table">
     <thead>
         <tr>
-            <th>Danh Mục ID</th>
+            <th>STT</th>
             <th>Tên Danh Mục</th>
             <th>Action</th>
         </tr>
@@ -95,14 +95,15 @@
                 data: { pageNumber: pageNumber, pageSize: pageSize },
                 dataType: 'json',
                 success: function (data) {
-                    if (data.listDanhMuc.length === 0) {
+                    if (data.listDanhMuc.length === 0 && pageNumber != 1) {
                         location.reload();
                     }
                     var tableBody = $('#catalogueTable tbody');
                     tableBody.empty();
                     $.each(data.listDanhMuc, function (index, value) {
+                        var STT = (index + 1);
                         var row = '<tr data-id="' + value.CatalogueID + '">' +
-                            '<td>' + value.CatalogueID + '</td>' +
+                            '<td>' + STT + '</td>' +
                             '<td>' + value.CatalogueName + '</td>' +
                             '<td>' + '<button id="editBtn" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#editCatalogueModal">Edit</button>' + " " +
                             '<button id="delBtn" class="btn btn-danger">Delete</button>' + '</td>' +
@@ -167,13 +168,13 @@
                 data: { tenDanhMuc: tenDanhMuc },
                 success: function (response) {
                     if (response.success == true) {
-                        alert(response.message);
+                        toastr["success"]("Thêm thành công!", "Thông báo")
                         //$('#addCatalogueModal').modal('hide'); // Đóng modal
                         //$('.modal-backdrop').remove();
                         //$('#addCatalogueModal').modal('toggle');
                         loadData(); // Cập nhật lại danh sách
                     } else {
-                        alert(response.message);
+                        toastr["error"]("lỗi: " + response.message, "Thông báo")
                     }
                 },
                 error: function (errormessage) {
@@ -209,7 +210,7 @@
                 type: 'POST',
                 data: { id: id,ten: name },
                 success: function (response) {
-                    alert(response.message);
+                    toastr["success"]("Sửa thành công!", "Thông báo")
                     //$('#editCatalogueModal').modal('hide');
                     //$('.modal-backdrop').remove();
                     loadData();
@@ -230,10 +231,10 @@
                     data: { id: catalogueID },
                     success: function (response) {
                         if (response.success) {
-                            alert("Xóa thành công!");
+                            toastr["success"]("Xoá thành công!", "Thông báo")
                             loadData();
                         } else {
-                            alert("Đã xảy ra lỗi: " + response.message);
+                            toastr["error"]("lỗi: " +response.message, "Thông báo")
                         }
                     },
                     error: function (errormessage) {

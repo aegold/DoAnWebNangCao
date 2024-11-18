@@ -1,12 +1,159 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DanhMucModel">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.5" name="DanhMucModel">
   <DataContextMoniker Name="/DanhMucModelDataContext" />
   <nestedChildShapes>
-    <classShape Id="77ed3587-a8e7-4937-9e59-0ab3ee03e030" absoluteBounds="2.75, 1.375, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/DanhMucModelDataContext/ProductCatalogue" />
+    <classShape Id="113793af-a420-469a-a50b-7ce8f2d7c4b1" absoluteBounds="6.25, 1.375, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Cart" />
       <nestedChildShapes>
-        <elementListCompartment Id="8135293d-a8e8-440d-b698-d0ea7a2bfb33" absoluteBounds="2.765, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e154bced-3c35-4acf-942c-28b33f2338cd" absoluteBounds="6.265, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="83de22a0-f00f-4fdc-9022-3685da98f808" absoluteBounds="6.25, 4.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Variant" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9404ec1c-e0ae-474c-b121-503604046d3e" absoluteBounds="6.265, 4.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="00e44856-da25-40eb-a342-96a368214e5e" absoluteBounds="6.25, 7.375, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b74f275a-22c6-459d-acb9-39940f156ee6" absoluteBounds="6.265, 7.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9e1adedb-a820-45f3-a54e-c5c900ce76be" absoluteBounds="0.75, 4.625, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/DanhMucModelDataContext/ProductCatalogue" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90e1c9e0-65bd-482a-989f-9de2c7fe7ff4" absoluteBounds="0.765, 5.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" absoluteBounds="3.5, 4, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0e686f2-013c-43ad-8c6b-15ec154a161d" absoluteBounds="3.515, 4.46, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="710ac19a-8a0e-4c61-9ef7-4dfa4735728a" absoluteBounds="1.5, 8, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04126e93-36df-4b42-9618-73086e4d653a" absoluteBounds="1.5150000000000001, 8.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bbbb4330-452b-48db-b709-70ca47d174a6" absoluteBounds="3.5, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/DanhMucModelDataContext/Session" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec6d635e-6a63-491a-9a87-84a39f21db81" absoluteBounds="3.515, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7a23026c-733b-4522-a4b6-f13fd9d33265" absoluteBounds="0.75, 1.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DanhMucModelDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1d175e06-7fe1-4fb9-924c-50c627b008c4" absoluteBounds="0.765, 1.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.09538361538462); (6.0625 : 3.53288361538462); (6.0625 : 2.26044840494792); (6.25 : 2.26044840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Cart" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="113793af-a420-469a-a50b-7ce8f2d7c4b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.46769230769231 : 4); (5.875 : 3.59269230769231); (5.875 : 2.26044840494792); (6.25 : 2.26044840494792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Cart1" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="113793af-a420-469a-a50b-7ce8f2d7c4b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.28929768880208); (6.25 : 5.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Variant" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="83de22a0-f00f-4fdc-9022-3685da98f808" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.83214884440104); (6.25 : 4.83214884440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Variant1" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="83de22a0-f00f-4fdc-9022-3685da98f808" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.53125 : 6.5401025390625); (4.53125 : 8.26044840494792); (6.25 : 8.26044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Order" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="00e44856-da25-40eb-a342-96a368214e5e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0468775 : 6.5401025390625); (5.0468775 : 7.78647170247396); (6.25 : 7.78647170247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Product/Product_Order1" />
+      <nodes>
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+        <classShapeMoniker Id="00e44856-da25-40eb-a342-96a368214e5e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5.22199625651042); (3.10416666666667 : 5.22199625651042 : JumpStart); (3.45833333333333 : 5.22199625651042 : JumpEnd); (3.5 : 5.22199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/ProductCatalogue/ProductCatalogue_Product" />
+      <nodes>
+        <classShapeMoniker Id="9e1adedb-a820-45f3-a54e-c5c900ce76be" />
+        <classShapeMoniker Id="6487a47c-3fcb-4204-aa53-2b10cbd027a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.65949625651042); (6.25 : 1.65949625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Session/Session_Cart" />
+      <nodes>
+        <classShapeMoniker Id="bbbb4330-452b-48db-b709-70ca47d174a6" />
+        <classShapeMoniker Id="113793af-a420-469a-a50b-7ce8f2d7c4b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.45474812825521); (6.25 : 1.45474812825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Session/Session_Cart1" />
+      <nodes>
+        <classShapeMoniker Id="bbbb4330-452b-48db-b709-70ca47d174a6" />
+        <classShapeMoniker Id="113793af-a420-469a-a50b-7ce8f2d7c4b1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.81395395292468); (3.19107193490112 : 4.2550258878258 : JumpStart); (3.34017556509888 : 4.40412951802356 : JumpEnd); (3.375 : 4.43895395292468); (3.375 : 6.875); (4.44791666666667 : 6.875 : JumpStart); (4.61458333333333 : 6.875 : JumpEnd); (4.96354416666667 : 6.875 : JumpStart); (5.13021083333333 : 6.875 : JumpEnd); (5.7799680229367 : 6.875); (6.2799680229367 : 7.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DanhMucModelDataContext/User/User_Order" />
+      <nodes>
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+        <classShapeMoniker Id="00e44856-da25-40eb-a342-96a368214e5e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.81856933754006); (3.1875 : 4.25606933754006); (3.1875 : 7); (3.19791666666667 : 7 : JumpStart); (3.36458333333333 : 7 : JumpEnd); (4.44791666666667 : 7 : JumpStart); (4.61458333333333 : 7 : JumpEnd); (4.96354416666667 : 7 : JumpStart); (5.13021083333333 : 7 : JumpEnd); (5.84639320537861 : 7); (6.25 : 7.40360679462139)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DanhMucModelDataContext/User/User_Order1" />
+      <nodes>
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+        <classShapeMoniker Id="00e44856-da25-40eb-a342-96a368214e5e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.72199625651042); (3.5 : 1.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/User/User_Session" />
+      <nodes>
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+        <classShapeMoniker Id="bbbb4330-452b-48db-b709-70ca47d174a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.54849812825521); (3.5 : 1.54849812825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/User/User_Session1" />
+      <nodes>
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+        <classShapeMoniker Id="bbbb4330-452b-48db-b709-70ca47d174a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.28125 : 8); (3.28125 : 2.76797510471755); (2.75 : 2.76797510471755)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Role/Role_User" />
+      <nodes>
+        <classShapeMoniker Id="710ac19a-8a0e-4c61-9ef7-4dfa4735728a" />
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.2499975 : 8); (3.2499975 : 3.29096452882111); (2.75 : 3.29096452882111)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DanhMucModelDataContext/Role/Role_User1" />
+      <nodes>
+        <classShapeMoniker Id="710ac19a-8a0e-4c61-9ef7-4dfa4735728a" />
+        <classShapeMoniker Id="7a23026c-733b-4522-a4b6-f13fd9d33265" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

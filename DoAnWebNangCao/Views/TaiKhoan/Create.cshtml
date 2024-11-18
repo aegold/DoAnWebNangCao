@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Thêm Tài Khoản";
+}
+<style>
+    label{
+        width:100%;
+    }
+    button{
+        margin-top:10px;
+    }
+    button:hover{
+        opacity: 0.8;
+    }
+</style>
+<form id="createUserForm">
+    <div>
+        <label for="Account">Tài khoản</label>
+        <input type="text" id="Account" name="Account" required />
+    </div>
+
+    <div>
+        <label for="Password">Mật khẩu</label>
+        <input type="password" id="Password" name="Password" required />
+    </div>
+
+    <div>
+        <label for="Role">Vai trò</label>
+        <select id="Role" name="Role">
+            <option value="Admin">Admin</option>
+            <option value="Customer">Customer</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="Name">Tên</label>
+        <input type="text" id="Name" name="Name" required />
+    </div>
+
+    <div>
+        <label for="Phone">Số điện thoại</label>
+        <input type="text" id="Phone" name="Phone" required />
+    </div>
+
+    <div>
+        <label for="Address">Địa chỉ</label>
+        <input type="text" id="Address" name="Address" required />
+    </div>
+
+    <div>
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" required />
+    </div>
+
+    <button type="button" onclick="submitForm()">Thêm Tài Khoản</button>
+</form>
+
+<script>
+    function submitForm() {
+        var formData = {
+            Account: $('#Account').val(),
+            Password: $('#Password').val(),
+            Role: $('#Role').val(),
+            Name: $('#Name').val(),
+            Phone: $('#Phone').val(),
+            Address: $('#Address').val(),
+            Email: $('#Email').val()
+        };
+
+        $.ajax({
+            url: '@Url.Action("ThemTaiKhoan", "TaiKhoan")',
+            type: 'POST',
+            data: formData,
+            success: function(response) {
+                toastr["success"]("Thêm tài khoản thành công!", "Thông báo")
+                setTimeout(function () {
+                    location.replace('@Url.Action("Index","TaiKhoan")');
+                }, 2000);
+            },
+            error: function() {
+                alert('Có lỗi xảy ra khi thêm tài khoản.');
+            }
+        });
+    }
+</script>

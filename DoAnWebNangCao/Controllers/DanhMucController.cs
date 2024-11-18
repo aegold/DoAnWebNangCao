@@ -19,16 +19,25 @@ namespace DoAnWebNangCao.Controllers
         [HttpPost]
         public JsonResult GetListDanhMuc(int pageNumber, int pageSize)
         {
-            Debug.WriteLine(pageNumber);
-            var listDanhMuc = _danhMucContext.ProductCatalogues
-                             .OrderBy(sp => sp.CatalogueID)
-                             .Skip((pageNumber - 1) * pageSize)
-                             .Take(pageSize)
-                             .ToList();
+            List<ProductCatalogue> danhMucList = _danhMucContext.ProductCatalogues.ToList();
+            //var listDanhMuc = _danhMucContext.ProductCatalogues.ToList();
+            //                 //.OrderBy(sp => sp.CatalogueName)
+            //                 //.Skip((pageNumber - 1) * pageSize)
+            //                 //.Take(pageSize)
+            //                 //.ToList();
+            var listDanhMuc = danhMucList.Select(d => new {
+                CatalogueID = d.CatalogueID,
+                CatalogueName = d.CatalogueName
+            }).OrderBy(sp => sp.CatalogueName)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
             if (listDanhMuc == null)
             {   
                 Debug.WriteLine("loi");
             }
+
+
             var tongSoDanhMuc = _danhMucContext.ProductCatalogues.Count();
             return Json(new { listDanhMuc, tongSoDanhMuc }, JsonRequestBehavior.AllowGet);
         }
@@ -38,6 +47,7 @@ namespace DoAnWebNangCao.Controllers
             try
             {
                 var newDanhMuc = new ProductCatalogue();
+                newDanhMuc.CatalogueID = Guid.NewGuid().ToString();
                 newDanhMuc.CatalogueName = tenDanhMuc;
                 _danhMucContext.ProductCatalogues.InsertOnSubmit(newDanhMuc);
                 _danhMucContext.SubmitChanges();
@@ -50,7 +60,25 @@ namespace DoAnWebNangCao.Controllers
             
         }
 
-        public JsonResult GetObjectByID(int id)
+        public ActionResult GetListDanhMucForSP()
+        {
+            List<ProductCatalogue> danhMucList = _danhMucContext.ProductCatalogues.ToList();
+            // Kiểm tra nếu danh sách rỗng hoặc null
+            if (danhMucList == null || danhMucList.Count == 0)
+            {
+                return Json(new { data = new List<string>() }, JsonRequestBehavior.AllowGet); // trả về danh sách rỗng
+            }
+
+            // Trả về dữ liệu dưới dạng JSON
+            var result = danhMucList.Select(d => new {
+                CatalogueID = d.CatalogueID,
+                CatalogueName = d.CatalogueName
+            }).ToList();
+
+            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetObjectByID(string id)
         {
             Debug.WriteLine(id);
             var catalogueObj = _danhMucContext.ProductCatalogues.FirstOrDefault(x => x.CatalogueID == id);
@@ -62,7 +90,7 @@ namespace DoAnWebNangCao.Controllers
 
         }
         [HttpPost]
-        public JsonResult SuaDanhMuc(int id,string ten)
+        public JsonResult SuaDanhMuc(string id,string ten)
         {
             var catalogueObj = _danhMucContext.ProductCatalogues.FirstOrDefault(x => x.CatalogueID == id);
             if(catalogueObj == null)
@@ -78,7 +106,7 @@ namespace DoAnWebNangCao.Controllers
         }
 
         [HttpPost]
-        public JsonResult XoaDanhMuc(int id)
+        public JsonResult XoaDanhMuc(string id)
         {
             var catalogueObj = _danhMucContext.ProductCatalogues.FirstOrDefault(x => x.CatalogueID == id);
             if (catalogueObj == null)

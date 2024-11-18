@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Thêm mới sản phẩm";
+}
+<style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    .form-group {
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
+<form id="myform" enctype="multipart/form-data">
+    <div class="card-body">
+        <div class="form-group">
+            <label for="TenSanPham">Tên sản phẩm:</label>
+            <input type="text" class="form-control" name="TenSanPham" placeholder="Điền tên sản phẩm">
+        </div>
+        <div class="form-group">
+            <label>Danh Mục:</label>
+            <select class="custom-select rounded-0" id="DanhMuc" name="DanhMuc">
+                <option>Không có</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Gia">Giá:</label>
+            <input type="text" class="form-control" name="Gia" placeholder="Điền giá sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="MoTa">Mô tả:</label>
+            <input type="text" class="form-control" name="MoTa" placeholder="Điền mô tả sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="SoLuong">Số lượng:</label>
+            <input type="text" class="form-control" name="SoLuong" placeholder="Điền số lượng sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="Color">Màu sắc:</label>
+            <input type="text" class="form-control" name="Color" placeholder="Điền màu sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="Size">Size:</label>
+            <input type="text" class="form-control" name="Size" placeholder="Điền size sản phẩm">
+        </div>
+        <div class="form-group">
+            <label for="ImageFile">Hình ảnh sản phẩm:</label>
+            <input type="file" class="form-control" id="imageFile" name="ImageFile" accept="image/*">
+            <img id="previewImage" src="#" alt="Preview Image" style="display:none; max-width: 200px; margin-top: 10px;" />
+        </div>
+        
+    </div>
+    <!-- /.card-body -->
+
+    <div class="card-footer">
+        <input type="submit" value="Thêm mới" />
+    </div>
+</form>
+
+<script type="text/javascript">
+function LoadDataDanhMucCha() {
+    $.ajax({
+        url: '@Url.Action("GetListDanhMucForSP", "DanhMuc")', // Đảm bảo URL này đúng
+        type: 'POST',  // Nếu chỉ lấy dữ liệu, có thể sử dụng 'GET' thay vì 'POST'
+        dataType: 'json',
+        success: function (response) {
+            // Kiểm tra dữ liệu trả về từ server
+            if (response && response.data) {
+                let danhSachDM = response.data;
+                let select = $("#DanhMuc"); // Xóa tất cả các mục cũ trong dropdown
+                $.each(danhSachDM, function (index, danhMuc) {
+                    select.append("<option value='" + danhMuc.CatalogueID + "'>" + danhMuc.CatalogueName + "</option>");
+                });
+            } else {
+                alert("Không có danh mục nào được tải.");
+            }
+        },
+        error: function () {
+            alert('Error loading categories.');
+        }
+    });
+}
+    $('#imageFile').change(function () {
+        console.log('ads');
+          var file = this.files[0];
+          if (file) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                  $('#previewImage').attr('src', e.target.result);
+                  $('#previewImage').show();
+              }
+              reader.readAsDataURL(file);
+          }
+     });
+
+    $(document).ready(function () {
+        LoadDataDanhMucCha();
+        ImagePreview();
+        $('#myform').submit(function (event) {
+            event.preventDefault();
+            var form = $('#myform');  // Sử dụng đúng id của form
+            var formData = new FormData(form[0]);  // Chuyển từ đối tượng jQuery sang DOM
+
+            var danhMucId = $("#DanhMuc").val();
+            formData.append("IdDanhMuc", danhMucId);
+            $.ajax({
+                url: '@Url.Action("PostCreate", "SanPham")',
+                type: 'POST',
+                dataType: 'json',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success == true) {
+                        toastr["success"]("Thêm mới thành công!", "Thông báo")
+                        //location.replace("@Url.Action("Index", "SanPham")");
+                        setTimeout(function () {
+                            location.replace('@Url.Action("Index","SanPham")');
+                        }, 2000);
+                    }
+                    else if (response.success == false) {
+                        toastr["error"]("Thêm mới thất bại!", "Thông báo")
+                    }
+                },
+                error: function () {
+                    alert('Error loading categories.');
+                }
+            });
+        });
+    });
+</script>
